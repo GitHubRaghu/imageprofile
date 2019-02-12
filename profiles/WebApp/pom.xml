@@ -17,7 +17,7 @@
   </dependencies>
   <profiles>
    <profile>
-      <id>test</id>
+      <id>image</id>
    <build>
     <finalName>WebApp</finalName>
     <plugins>
@@ -43,8 +43,40 @@
          </arguments>
        </configuration>
         </plugin>
-       </plugins>
-</build>
-</profile>
+        </plugins>
+        </build>
+        </profile>
+
+  <profile>
+    <id>codecoverage</id>
+  <build>
+  <plugins>
+  <plugin>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>0.7.5.201505241946</version>
+        <configuration>
+          <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+          <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+        </configuration>
+           <executions>
+             <execution>
+               <id>jacoco-initialize</id>
+                 <goals>
+                   <goal>prepare-agent</goal>
+                 </goals>
+                    </execution>
+                      <execution>
+                        <id>jacoco-site</id>
+                           <phase>package</phase>
+                      <goals>
+                         <goal>report</goal>
+                      </goals>
+             </execution>
+             </executions>
+       </plugin>
+      </plugins>
+      </build>
+      </profile>
 </profiles>
 </project>
